@@ -1,7 +1,7 @@
 module KeywordTool
   class Config
     class APIKeyError < StandardError;end
-    DEFAULT_ENDPOIN = "http://api.keywordtool.io/v2"
+    DEFAULT_ENDPOIN = "http://api.keywordtool.io/v2".freeze
 
     attr_accessor :api_key
     attr_accessor :endpoint
