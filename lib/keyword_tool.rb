@@ -1,5 +1,6 @@
 require "keyword_tool/version"
 require "keyword_tool/config"
+require "keyword_tool/locations"
 
 module KeywordTool
   ##
