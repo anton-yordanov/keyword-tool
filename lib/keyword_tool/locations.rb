@@ -12,7 +12,7 @@ module KeywordTool
       end
 
       def find_by_name(name)
-        all.select { |key, _| key.downcase == name.downcase }
+        all.select { |key, _| key.casecmp(name) > -1 }
       end
 
       private :new
@@ -59,11 +59,11 @@ module KeywordTool
     end
 
     def parse_csv_file
-      csv_options = { headers: true, encoding: "UTF-8"  }
+      csv_options = { headers: true, encoding: "UTF-8" }
 
       CSV.read(csv_file_path, csv_options).each_with_object({}) do |row, memo|
         next unless row["Target Type"] == "Country"
-        memo[row["Name"]] = 
+        memo[row["Name"]] =
           {
             code: row["Criteria ID"].to_i,
             country_code: row["Country Code"]
