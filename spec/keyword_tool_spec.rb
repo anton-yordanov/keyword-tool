@@ -1,4 +1,5 @@
 require 'spec_helper'
+require "shared_context/search_volume"
 
 describe KeywordTool do
   it 'has a version number' do
@@ -28,6 +29,15 @@ describe KeywordTool do
   context "system" do
     it "have root_path" do
       expect(KeywordTool.root_path).to_not be_nil
+    end
+  end
+
+  context "search volume" do
+    include_context("search volume")
+
+    it "gets keywords search volume from the Keyword Toll API" do
+      expect(KeywordTool.search_volume(request_params)).to \
+        eq(JSON.parse(fake_response, symbolize_keys: true))
     end
   end
 end

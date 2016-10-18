@@ -1,6 +1,7 @@
 require "keyword_tool/version"
 require "keyword_tool/config"
 require "keyword_tool/locations"
+require "keyword_tool/search_volume"
 
 module KeywordTool
   ##
@@ -12,13 +13,10 @@ module KeywordTool
   #    end
 
   def self.method_missing(method_sym, *arguments, &block)
-    begin
-      configure.send(method_sym)
-    rescue
-      super
-    end
+    configure.send(method_sym)
+  rescue
+    super
   end
-
 
   def self.respond_to?(method_sym, include_private = false)
     return true if configure && configure.repond_to?(method_sym)
@@ -36,4 +34,7 @@ module KeywordTool
     @root_path ||= File.expand_path("../../", __FILE__)
   end
 
+  def search_volume(params)
+    SearchVolume.get(params)
+  end
 end
