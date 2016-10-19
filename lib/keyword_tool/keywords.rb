@@ -1,3 +1,4 @@
+require "json"
 module KeywordTool
   class Keywords
     UNSAFE_CHARACTERS =
@@ -21,12 +22,12 @@ module KeywordTool
     end
 
     def to_s
-      "[#{sanitize.join(',')}]"
+      JSON.generate(sanitized_collection)
     end
 
     private
 
-    def sanitize
+    def sanitized_collection
       collection.each do |keyowrd|
         keyowrd.gsub!(/[#{UNSAFE_CHARACTERS}]/, '')
       end

@@ -1,5 +1,6 @@
 require "json"
 require "keyword_tool/http"
+require "keyword_tool/keywords"
 
 module KeywordTool
   module SearchVolume
@@ -19,7 +20,7 @@ module KeywordTool
       end
 
       def get
-        reponse =
+        response =
           http.get do |req|
             req.url(
               SearchVolume.endpoint,
@@ -28,9 +29,9 @@ module KeywordTool
             req.options.timeout = 30
             req.options.open_timeout = 5
             req.headers = { "Accept" => "application/json" }
-          end.body
+          end
 
-        JSON.parse(reponse, symbolize_keys: true)
+        JSON.parse(response.body, symbolize_keys: true)
       end
 
       private

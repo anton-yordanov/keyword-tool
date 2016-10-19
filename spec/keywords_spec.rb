@@ -7,7 +7,7 @@ module KeywordTool
 
     it "store the keywords into the collection" do
       keywords = ["apple", "samsung"]
-      collection subject.new(keywords).collection
+      collection = subject.new(keywords).collection
       expect(collection).to eq(keywords)
     end
 
@@ -25,12 +25,12 @@ module KeywordTool
 
     it "joins collection to string" do
       keywords = ["apple", "samsung"]
-      expect(subject.new(keywords).to_s).to eq("[apple,samsung]")
+      expect(subject.new(keywords).to_s).to eq(JSON.generate(keywords))
     end
 
     it "remove unsafe characters from keywords when they are tndofrmed to string" do
       keywords = ["-()!?@%,*\n\t\"^={};~`<>?\\|°§ə€£¥￥⁄¶‰′″‴¿–—apple"]
-      expect(subject.new(keywords).to_s).to eq("[apple]")
+      expect(subject.new(keywords).to_s).to eq("[\"apple\"]")
     end
   end
 end
