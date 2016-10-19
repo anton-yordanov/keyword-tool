@@ -42,7 +42,7 @@ module KeywordTool
           raise(MissingKeywordParameterError, "keyword is required parameter")
         end
 
-        params[:keyword] = "[#{params[:keyword].join(',')}]"
+        params[:keyword] = KeywordTool::Keywords.new(params[:keyword]).to_s
 
         @permited_parameters =
           params.keep_if do |key, _|
