@@ -1,6 +1,5 @@
 require "keyword_tool/version"
 require "keyword_tool/config"
-require "keyword_tool/locations"
 require "keyword_tool/search_volume"
 
 module KeywordTool
@@ -35,7 +34,7 @@ module KeywordTool
   end
 
   ##
-  # @example 
+  # @example
   #   KeywordTool.search_volume(keyword: ["samsung", "apple", "andorid"], metrics_location: "2840")
 
   def search_volume(params)
