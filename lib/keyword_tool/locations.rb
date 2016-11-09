@@ -21,6 +21,8 @@ module KeywordTool
     attr_reader :name, :code
 
     def initialize(options = {})
+      validate_input_arguments(options)
+
       @name = options.delete(:name)
       @code = options.delete(:code)
     end
@@ -77,6 +79,16 @@ module KeywordTool
       @http_request = Net::HTTP.new(LOCATIONS_URI.host, LOCATIONS_URI.port)
       @http_request.use_ssl = true
       @http_request
+    end
+
+    def validate_input_arguments(args)
+      raise(ArgumentError,
+        "Locations options should be a Hash") unless args.is_a?(Hash)
+
+      unless args.keys & %w(name code)
+        raise(ArgumentError,
+          "Locations options should have :name or :code hash keys")
+      end
     end
   end
 end
