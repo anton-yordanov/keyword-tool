@@ -10,8 +10,9 @@ module KeywordTool
       @endpoint ||= KeywordTool.endpoint + END_POINT_PATH
     end
 
-    def get(params)
-      api_req = ApiRequest.new(params)
+    # @param options Hash[<country:,language:, metrics_location:, metrics_language:>]
+    def get(options)
+      api_req = ApiRequest.new(options)
       api_req.get
     end
   end

@@ -34,6 +34,10 @@ module KeywordTool
     @root_path ||= File.expand_path("../../", __FILE__)
   end
 
+  ##
+  # @example 
+  #   KeywordTool.search_volume(keyword: ["samsung", "apple", "andorid"], metrics_location: "2840")
+
   def search_volume(params)
     SearchVolume.get(params)
   end
