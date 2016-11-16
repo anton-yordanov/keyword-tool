@@ -26,8 +26,8 @@ module KeywordTool
               SearchVolume.endpoint,
               permited_parameters.merge(apikey: KeywordTool.api_key)
             )
-            req.options.timeout = 30
-            req.options.open_timeout = 5
+            req.options.timeout = 90
+            req.options.open_timeout = 30
             req.headers = { "Accept" => "application/json" }
           end
 
