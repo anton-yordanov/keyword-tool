@@ -2,7 +2,7 @@ require "json"
 module KeywordTool
   class Keywords
     UNSAFE_CHARACTERS =
-      Regexp.escape("-()!?@%,*\n\t\"^={};~`<>?\\|°§ə€£¥￥⁄¶‰′″‴¿–—").freeze
+      Regexp.escape("()!?@%,*\n\t\"^={};~`<>?\\|°§ə€£¥￥⁄¶‰′″‴¿–—").freeze
     MAX_COLLECTION_SIZE = 800
 
     class CollextionSizeError < StandardError; end
@@ -22,7 +22,7 @@ module KeywordTool
     end
 
     def to_s
-      JSON.generate(sanitized_collection)
+      JSON.generate(collection)
     end
 
     private
