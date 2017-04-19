@@ -19,16 +19,15 @@ module KeywordTool
         @params = params
       end
 
-      def get
+      def fetch
+        payload = permited_parameters.merge(apikey: KeywordTool.api_key)
         response =
-          http.get do |req|
-            req.url(
-              SearchVolume.endpoint,
-              permited_parameters.merge(apikey: KeywordTool.api_key)
-            )
+          http.post do |req|
+            req.url(SearchVolume.endpoint)
             req.options.timeout = 90
             req.options.open_timeout = 30
-            req.headers = { "Accept" => "application/json" }
+            req.headers["Accept"] = "application/json"
+            req.body = payload
           end
 
         JSON.parse(response.body, symbolize_keys: true)
@@ -43,7 +42,7 @@ module KeywordTool
           raise(MissingKeywordParameterError, "keyword is required parameter")
         end
 
-        params[:keyword] = KeywordTool::Keywords.new(params[:keyword]).to_s
+        params[:keyword] = KeywordTool::Keywords.new(params[:keyword]).to_json
 
         @permited_parameters =
           params.keep_if do |key, _|

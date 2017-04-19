@@ -11,9 +11,9 @@ module KeywordTool
     end
 
     # @param options Hash[<country:,language:, metrics_location:, metrics_language:>]
-    def get(options)
+    def fetch(options)
       api_req = ApiRequest.new(options)
-      api_req.get
+      api_req.fetch
     end
   end
 end

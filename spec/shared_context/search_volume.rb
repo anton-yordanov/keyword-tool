@@ -4,7 +4,7 @@ RSpec.shared_context "search volume", :shared_context => :metadata do
       c.api_key = ENV["API_KEY"]
     end
 
-    stub_request(:get, /#{KeywordTool::SearchVolume.endpoint}/)
+    stub_request(:post, /#{KeywordTool::SearchVolume.endpoint}/)
       .to_return(body: fake_response)
   end
 

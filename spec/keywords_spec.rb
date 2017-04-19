@@ -15,7 +15,7 @@ module KeywordTool
       items_number = Keywords::MAX_COLLECTION_SIZE + 1
       keywords = []
       items_number.times { |i| keywords << i }
-      expect { subject.new(keywords) }.to raise_error(Keywords::CollextionSizeError)
+      expect { subject.new(keywords) }.to raise_error(Keywords::CollectionSizeError)
     end
 
     it "accepts only array as a argument" do
@@ -25,12 +25,12 @@ module KeywordTool
 
     it "joins collection to string" do
       keywords = ["apple", "samsung"]
-      expect(subject.new(keywords).to_s).to eq(JSON.generate(keywords))
+      expect(subject.new(keywords).to_json).to eq(JSON.generate(keywords))
     end
 
-    it "remove unsafe characters from keywords when they are tndofrmed to string" do
-      keywords = ["-()!?@%,*\n\t\"^={};~`<>?\\|°§ə€£¥￥⁄¶‰′″‴¿–—apple"]
-      expect(subject.new(keywords).to_s).to eq("[\"apple\"]")
+    it "remove unsafe characters from keywords when they are transformed to string" do
+      keywords = ["()!?@%,*\n\t\"^={};~`<>?\\|°§ə€£¥￥⁄¶‰′″‴¿–—apple"]
+      expect(subject.new(keywords).to_json).to eq("[\"apple\"]")
     end
   end
 end

@@ -8,6 +8,7 @@ module KeywordTool
           http_opt = [{ url: KeywordTool.endpoint }]
           Faraday.new(*http_opt) do |con|
             con.response :logger
+            con.request :url_encoded
             con.adapter  Faraday.default_adapter
           end
         end

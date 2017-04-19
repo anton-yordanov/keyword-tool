@@ -2,6 +2,7 @@
 
 require "bundler/setup"
 require "keyword_tool"
+require 'dotenv'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -11,4 +12,13 @@ require "keyword_tool"
 # Pry.start
 
 require "irb"
+Dotenv.load
+KeywordTool.configure do |c|
+  c.api_key = ENV["API_KEY"]
+  c.endpoint = "http://api.keywordtool.io/v2"
+end
 IRB.start
+
+##
+# @example
+#   KeywordTool.search_volume(keyword: ["samsung", "apple", "andorid"], metrics_location: "2840")

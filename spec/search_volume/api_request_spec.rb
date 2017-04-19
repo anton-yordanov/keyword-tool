@@ -8,8 +8,8 @@ module KeywordTool
 
       subject { described_class.new(request_params) }
 
-      it "gets keywords search volume from the Keyword Toll API" do
-        expect(subject.get).to \
+      it "fetch keywords search volume from the Keyword Toll API" do
+        expect(subject.fetch).to \
           eq(JSON.parse(fake_response, symbolize_keys: true))
       end
     end
