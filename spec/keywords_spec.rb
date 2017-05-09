@@ -32,5 +32,11 @@ module KeywordTool
       keywords = ["()!?@%,*\n\t\"^={};~`<>?\\|°§ə€£¥￥⁄¶‰′″‴¿–—apple"]
       expect(subject.new(keywords).to_json).to eq("[\"apple\"]")
     end
+
+    it "remove keywords which exceed 80 characters from the JSON" do
+      keywords = %W(#{'a'*81} apple samsung)
+      sanitized_collection = subject.new(keywords).to_json
+      expect(JSON.load(sanitized_collection).size).to eq(2)
+    end
   end
 end
