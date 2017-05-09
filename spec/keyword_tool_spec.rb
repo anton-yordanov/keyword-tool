@@ -35,7 +35,7 @@ describe KeywordTool do
   context "search volume" do
     include_context("search volume")
 
-    it "gets keywords search volume from the Keyword Toll API" do
+    it "gets keywords search volume from the Keyword Tool API" do
       expect(KeywordTool.search_volume(request_params)).to \
         eq(JSON.parse(fake_response, symbolize_keys: true))
     end

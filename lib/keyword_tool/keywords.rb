@@ -28,9 +28,11 @@ module KeywordTool
     private
 
     def sanitized_collection
-      collection.each do |keyowrd|
-        keyowrd.gsub!(/[#{UNSAFE_CHARACTERS}]/, '')
-      end
+      @sanitized_collection ||=
+        collection.each_with_object([]) do |keyowrd, acc|
+          next if keyowrd.size > 80
+          acc << keyowrd.gsub(/[#{UNSAFE_CHARACTERS}]/, '')
+        end
     end
   end
 end
