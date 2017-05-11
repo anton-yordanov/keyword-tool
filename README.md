@@ -1,8 +1,8 @@
 # KeywordTool
+With this gem  you can fetch the keywords search volume from the
+Keywordtool.io API.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/keyword_tool`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+More about the Keywordtool.io API can be read [here](https://keywordtool.io/api/documentation)
 
 ## Installation
 
@@ -20,16 +20,34 @@ Or install it yourself as:
 
     $ gem install keyword_tool
 
+## Environment varibles
+API_KEY
+> Your KeywordTool.io API key
+
+
 ## Usage
   ```ruby
-    KeywordTool.search_volume(keyword: ["keyword1", "keyword1", ...], metrics_location: "2840", output: 'json')
+    KeywordTool.configure do |c|
+      c.api_key = ENV["API_KEY"]
+      c.endpoint = "http://api.keywordtool.io/v2"
+    end
+
+    KeywordTool.search_volume(
+      keyword: ["keyword1", "keyword1", ...], #array of keywords
+      metrics_location: "2840", # Keywordtool.io location code
+      output: 'json' # reponse format
+    )
   ```
 
-## Development
+## Testing and debuging
+```bash
+  bundle exec rspec spec
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```bash
+  bundle exec bin/console
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## TODO
-  - Implement Keyword Suggestions
+  - Implement the keyword suggestions API
